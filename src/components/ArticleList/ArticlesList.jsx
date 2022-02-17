@@ -5,7 +5,7 @@ import Article from "../Article/Article";
 
 import style from './articles-list.css'
 
-import {getArticlesByCategory} from "../../redux/Articles/articles.actions";
+import { getArticlesByCategory } from "../../redux/Articles/articles.actions";
 
 const ArticlesList = (props) => {
     if (props.articles.length === 0) { // no articles yet

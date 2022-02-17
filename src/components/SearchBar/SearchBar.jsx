@@ -18,7 +18,7 @@ const SearchBar = (props) => {
                 className='search-bar-input'
                 key="search-bar"
                 value={props.value}
-                placeholder={"search country"}
+                placeholder={"search for articles"}
                 onChange={(e) => setKeyword(e.target.value)}
             />
         </div>

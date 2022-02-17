@@ -1,0 +1,10 @@
+.categories {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.category {
+    margin-left: 10px;
+}
