@@ -1,6 +1,6 @@
 import React from "react";
 
-import { DEFAULT_DESCRIPTION_LENGTH } from "../../config";
+import { DEFAULT_DESCRIPTION_LENGTH, DEFAULT_IMAGE_URL } from "../../config";
 
 import style from './article.css';
 
@@ -11,7 +11,7 @@ const Article = ({ title, publishedAt, urlToImage, description}) => {
             <h5 className='published-date'>{publishedAt}</h5>
             <img
                 className='image'
-                src={urlToImage}
+                src={urlToImage ? urlToImage : DEFAULT_IMAGE_URL}
                 alt='article-img'
             >
             </img>

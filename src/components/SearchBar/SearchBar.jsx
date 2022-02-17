@@ -1,16 +1,19 @@
-import React from "react";
+import React, {useCallback} from "react";
 import { connect } from "react-redux"
+import debounce from 'lodash.debounce';
 
 import {
     search
 } from '../../redux/SearchBar/searchbar.actions'
+import { getArticlesBySearch } from "../../api/api";
 
 import style from './searchbar.css';
 
 const SearchBar = (props) => {
-    const setKeyword = (value) => {
-        props.searchValue(value);
-    }
+
+    const debouncedChangeHandler = useCallback(
+        debounce((value) => { getArticlesBySearch({ searchValue: value }) }, 250)
+        ,[]);
 
     return (
         <div className='searchbar' style={style}>
@@ -19,7 +22,10 @@ const SearchBar = (props) => {
                 key="search-bar"
                 value={props.value}
                 placeholder={"search for articles"}
-                onChange={(e) => setKeyword(e.target.value)}
+                onChange={(e) => {
+                    props.searchValue(e.target.value);
+                    debouncedChangeHandler(e.target.value);
+                }}
             />
         </div>
     );

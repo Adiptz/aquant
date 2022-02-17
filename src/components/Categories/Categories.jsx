@@ -2,9 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { setCategory } from '../../redux/Categories/categories.actions';
+import { getArticlesByCategory } from "../../api/api";
 
 import style from './categories.css';
-import {getArticlesByCategory} from "../../redux/Articles/articles.actions";
 
 const Categories = (props) => {
     const categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
@@ -24,6 +24,7 @@ const Categories = (props) => {
             {
                 categories.map(category =>
                     <button
+                        key={category}
                         className={ isCurrentCategory(category) ? 'current-category-button': 'category-button'}
                         onClick={() => handleCategorySelection(category)}
                     >

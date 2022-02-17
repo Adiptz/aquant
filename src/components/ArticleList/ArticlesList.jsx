@@ -2,12 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 
 import Article from "../Article/Article";
-import { getArticlesByCategory } from "../../redux/Articles/articles.actions";
+import { getArticlesByCategory } from "../../api/api";
 
 import style from './articles-list.css'
 
 const ArticlesList = (props) => {
-    if (props.articles.length === 0) { // no articles yet
+    if (props.articles.length === 0) { // in case that there are no articles yet
         getArticlesByCategory({ category: props.category.toLowerCase() });
     }
 
@@ -34,6 +34,7 @@ const ArticlesList = (props) => {
 const mapStateToProps = state => {
     return {
         articles: state.articles.articles,
+        searchValue: state.searchbar.searchValue,
         category: state.categories.category,
     }
 }
