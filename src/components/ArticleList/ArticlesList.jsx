@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 
 import Article from "../Article/Article";
 
+import style from './articles-list.css'
+
 import {getArticlesByCategory} from "../../redux/Articles/articles.actions";
 
 const ArticlesList = (props) => {
@@ -11,7 +13,10 @@ const ArticlesList = (props) => {
     }
 
     return (
-        <div>
+        <div
+            style={style}
+            className='articles-list'
+        >
           {
             props.articles.map(article =>
                 <Article
