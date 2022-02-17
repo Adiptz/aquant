@@ -1,10 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import style from './categories.css'
+import { setCategory } from '../../redux/Categories/categories.actions';
+
+import style from './categories.css';
+import {getArticlesByCategory} from "../../redux/Articles/articles.actions";
 
 const Categories = (props) => {
     const categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
+
+    const handleCategorySelection = (category) => {
+            props.setSelectedCategory(category);
+            getArticlesByCategory(category);
+    }
+
+    const isCurrentCategory = (category) => props.currentCategory === category;
 
     return (
         <div
@@ -13,9 +23,12 @@ const Categories = (props) => {
         >
             {
                 categories.map(category =>
-                    <div className='category'>
-                        <b>{category}</b>
-                    </div>
+                    <button
+                        className={ isCurrentCategory(category) ? 'current-category-button': 'category-button'}
+                        onClick={() => handleCategorySelection(category)}
+                    >
+                        {category}
+                    </button>
                 )
             }
         </div>
@@ -24,8 +37,14 @@ const Categories = (props) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        // setSelectedCategory: (value) => dispatch(setSelectedCategory(value)), TODO - implement
+        setSelectedCategory: (selectedCategory) => dispatch(setCategory(selectedCategory)),
     }
 }
 
-export default connect(mapDispatchToProps)(Categories);
+const mapStateToProps = state => {
+    return {
+        currentCategory: state.categories.category,
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

@@ -2,14 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 
 import Article from "../Article/Article";
+import { getArticlesByCategory } from "../../redux/Articles/articles.actions";
 
 import style from './articles-list.css'
 
-import { getArticlesByCategory } from "../../redux/Articles/articles.actions";
-
 const ArticlesList = (props) => {
     if (props.articles.length === 0) { // no articles yet
-        getArticlesByCategory({ category: props.category });
+        getArticlesByCategory({ category: props.category.toLowerCase() });
     }
 
     return (
@@ -20,6 +19,7 @@ const ArticlesList = (props) => {
           {
             props.articles.map(article =>
                 <Article
+                    key={article.title}
                     title={article.title}
                     publishedAt={article.publishedAt}
                     urlToImage={article.urlToImage}
@@ -34,7 +34,7 @@ const ArticlesList = (props) => {
 const mapStateToProps = state => {
     return {
         articles: state.articles.articles,
-        category: state.articles.category,
+        category: state.categories.category,
     }
 }
 

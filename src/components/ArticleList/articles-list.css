@@ -1,5 +1,7 @@
 .articles-list {
+    width: 90%;
     margin-left: 5%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }

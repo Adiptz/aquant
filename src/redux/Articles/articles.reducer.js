@@ -10,7 +10,6 @@ const reducer = (state = INITIAL_STATE, action) => {
 
     switch (action.type) {
         case GET_ARTICLES_BY_CATEGORY_SUCCESS:
-            console.log('here');
             return {
                 ...state, articles: action.payload,
             };

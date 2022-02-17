@@ -1,9 +1,10 @@
 import React from "react";
+
+import { DEFAULT_DESCRIPTION_LENGTH } from "../../config";
+
 import style from './article.css';
 
 const Article = ({ title, publishedAt, urlToImage, description}) => {
-    const descriptionLength = 80; // can set as a configuration settings
-
     return (
         <div className='article' style={style}>
             <h4 className='title'>{title}</h4>
@@ -14,7 +15,7 @@ const Article = ({ title, publishedAt, urlToImage, description}) => {
                 alt='article-img'
             >
             </img>
-            <p>{description?.substr(0, descriptionLength)}</p>
+            <p>{description?.substr(0, DEFAULT_DESCRIPTION_LENGTH)}</p>
         </div>
     );
 }

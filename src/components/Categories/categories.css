@@ -5,6 +5,19 @@
     padding-bottom: 10px;
 }
 
-.category {
+.my-button {
+    border: none;
+    outline: none;
+    border-radius: 3px;
+}
+
+.category-button {
+   @apply .my-button;
+   margin-left: 10px;
+}
+
+.current-category-button {
+    @apply --my-button;
+    background: #61dafb;
     margin-left: 10px;
 }
